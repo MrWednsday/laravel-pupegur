@@ -13,6 +13,7 @@
                         <profile-image-update
                             :current_user="{{Auth::user()}}"
                             :current_user_image="{{Auth::user()->image}}"
+                            :api_profile_image_update="{{ json_encode(route('api.post.image')) }}""
                         />
                     </div>
                     <div>

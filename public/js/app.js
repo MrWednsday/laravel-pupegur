@@ -2553,7 +2553,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     current_user: Object,
-    current_user_image: Object
+    current_user_image: Object,
+    api_profile_image_update: String
   },
   data: function data() {
     return {
@@ -2584,12 +2585,11 @@ __webpack_require__.r(__webpack_exports__);
         _this.showSave = true;
       };
     },
-    updateProfile: function updateProfile() {
+    updateProfileImage: function updateProfileImage() {
       var _this2 = this;
 
-      return axios.put(this.apiCommentStore, {
-        comment: this.comment,
-        post_id: this.post_id
+      return axios.post(this.api_profile_image_update, {
+        image: this.srcPath
       }).then(function (response) {
         _this2.imageError = "";
       })["catch"](function (error) {
@@ -66896,7 +66896,7 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-primary",
-                on: { click: _vm.uploadImage }
+                on: { click: _vm.updateProfileImage }
               },
               [_vm._v("Upload Profile Image")]
             )

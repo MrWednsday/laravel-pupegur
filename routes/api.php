@@ -56,7 +56,7 @@ Route::prefix('userData')->group(function () {
 });
 
 Route::prefix('image')->group(function () {
-    Route::post('', 'PostController@apiPostImage')
+    Route::post('', 'ImageController@apiPostImage')
         ->middleware('auth:api')
         ->name('api.post.image');
 });

@@ -19,7 +19,7 @@
         </div>
         <div v-if="showSave" class="d-flex justify-content-end">
             <div class="p-2 bd-highlight">
-                <button class="btn btn-primary" v-on:click="uploadImage">Upload Profile Image</button>
+                <button class="btn btn-primary" v-on:click="updateProfileImage">Upload Profile Image</button>
             </div>
         </div>
     </div>
@@ -30,6 +30,7 @@
         props: {
             current_user: Object,
             current_user_image: Object,
+            api_profile_image_update: String,
         },
         data:  function(){
             return {
@@ -62,9 +63,9 @@
 				};
             },
 
-            updateProfile: function() {
-                return axios.put(this.apiCommentStore, 
-                    {comment: this.comment, post_id: this.post_id}
+            updateProfileImage: function() {
+                return axios.post(this.api_profile_image_update, 
+                    {image: this.srcPath}
                 ).then((response) => {
                     this.imageError = "";
                 }).catch((error) => {
