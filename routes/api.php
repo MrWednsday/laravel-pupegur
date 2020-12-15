@@ -55,6 +55,13 @@ Route::prefix('userData')->group(function () {
         ->name('api.post.delete');
 });
 
+Route::prefix('image')->group(function () {
+    Route::post('', 'PostController@apiPostImage')
+        ->middleware('auth:api')
+        ->name('api.post.image');
+});
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

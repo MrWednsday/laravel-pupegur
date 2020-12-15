@@ -5,7 +5,7 @@
 		</div>
 		<div class="d-flex justify-content-center">
 			<div class="p-2 bd-highlight">
-				<label class="btn btn-secondary btn-large" style="font-size: 4em">
+				<label class="btn btn-secondary btn-large" style="background-color=transparent">
 					<input type="file" style="display:none" v-on:change="selectImage">
 					<div v-if="selectedImage === ''">
 						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder2-open" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

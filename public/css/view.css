@@ -136,8 +136,8 @@ img{
     display: block;
     max-width:50px;
     max-height:50px;
-    width: auto;
-    height: auto;
+    width: 50px;
+    height: 50px;
 }
 .input-field-profile{
     background-color: transparent;
@@ -162,4 +162,9 @@ img{
     padding-right: 12px;
     text-align: center;
     font-size: 24px;
+}
+
+.profile{
+    width: 50px;
+    height: 50px;
 }

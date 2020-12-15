@@ -2542,6 +2542,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     current_user: Object,
@@ -2552,7 +2560,8 @@ __webpack_require__.r(__webpack_exports__);
       user: this.current_user,
       userImage: this.current_user_image,
       imageError: "",
-      srcPath: ''
+      srcPath: '',
+      showSave: false
     };
   },
   mounted: function mounted() {
@@ -2560,18 +2569,31 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     setUrl: function setUrl() {
-      this.srcPath = "/storage/images/" + this.userImage.path;
+      this.srcPath = window.location.origin + '/storage/images/' + this.userImage.path;
+    },
+    selectImage: function selectImage(event) {
+      var _this = this;
+
+      var reader = new FileReader();
+      var file = event.target.files[0];
+      reader.readAsDataURL(file);
+
+      reader.onload = function () {
+        var imageData = reader.result;
+        _this.srcPath = imageData;
+        _this.showSave = true;
+      };
     },
     updateProfile: function updateProfile() {
-      var _this = this;
+      var _this2 = this;
 
       return axios.put(this.apiCommentStore, {
         comment: this.comment,
         post_id: this.post_id
       }).then(function (response) {
-        _this.imageError = "";
+        _this2.imageError = "";
       })["catch"](function (error) {
-        _this.imageError = error.response.data.errors.image[0];
+        _this2.imageError = error.response.data.errors.image[0];
       });
     }
   }
@@ -66578,10 +66600,7 @@ var render = function() {
       _c("div", { staticClass: "p-2 bd-highlight" }, [
         _c(
           "label",
-          {
-            staticClass: "btn btn-secondary btn-large",
-            staticStyle: { "font-size": "4em" }
-          },
+          { staticClass: "btn btn-secondary btn-large", staticStyle: {} },
           [
             _c("input", {
               staticStyle: { display: "none" },
@@ -66841,10 +66860,18 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "d-flex flex-row bd-highlight mb-3" }, [
       _c("div", { staticClass: "p-2 bd-highlight" }, [
-        _c("input", {
-          staticClass: "mx-auto d-block img-fluid img_profile",
-          attrs: { type: "image", src: _vm.srcPath, alt: "user.image.path" }
-        })
+        _c("label", { staticClass: "btn btn-secondary btn-large" }, [
+          _c("input", {
+            staticStyle: { display: "none" },
+            attrs: { type: "file" },
+            on: { change: _vm.selectImage }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "mx-auto d-block img-fluid img_profile",
+            attrs: { src: _vm.srcPath, alt: "user.image.path" }
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "p-2 bd-highlight" }, [
@@ -66860,7 +66887,22 @@ var render = function() {
             ])
           ])
         : _vm._e()
-    ])
+    ]),
+    _vm._v(" "),
+    _vm.showSave
+      ? _c("div", { staticClass: "d-flex justify-content-end" }, [
+          _c("div", { staticClass: "p-2 bd-highlight" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                on: { click: _vm.uploadImage }
+              },
+              [_vm._v("Upload Profile Image")]
+            )
+          ])
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

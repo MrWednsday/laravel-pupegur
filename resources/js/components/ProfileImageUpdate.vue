@@ -2,16 +2,24 @@
     <div>
         <div class="d-flex flex-row bd-highlight mb-3">
             <div class="p-2 bd-highlight">
-                <input type="image" class="mx-auto d-block img-fluid img_profile" 
-                    :src="srcPath"
-                    alt="user.image.path" 
-                />
+                <label class="btn btn-secondary btn-large">
+                    <input type="file" style="display:none" v-on:change="selectImage">
+                    <img class="mx-auto d-block img-fluid img_profile" 
+                        :src="srcPath"
+                        alt="user.image.path" 
+                    />
+                </label>
             </div>
             <div class="p-2 bd-highlight">
                 <h2 style="color: black"> {{user.name}} </h2>
             </div>
             <div v-if="imageError.length > 3" class="p-2 bd-highlight">
                 <h2 style="color: black"> {{imageError}} </h2>
+            </div>
+        </div>
+        <div v-if="showSave" class="d-flex justify-content-end">
+            <div class="p-2 bd-highlight">
+                <button class="btn btn-primary" v-on:click="uploadImage">Upload Profile Image</button>
             </div>
         </div>
     </div>
@@ -29,17 +37,31 @@
                 userImage: this.current_user_image,
                 imageError: "",
                 srcPath: '',
+                showSave: false,
             }
         },
 
-        mounted() {
+        mounted(){
             this.setUrl();
         },
 
         methods: {
             setUrl: function() {
-                this.srcPath = "/storage/images/" + this.userImage.path;
+                this.srcPath = window.location.origin + '/storage/images/' + this.userImage.path
             },
+            selectImage: function(event) {
+                var reader = new FileReader();
+				var file = event.target.files[0];
+
+				reader.readAsDataURL(file);
+
+				reader.onload = () => {
+					var imageData = reader.result;
+                    this.srcPath = imageData;
+                    this.showSave = true;
+				};
+            },
+
             updateProfile: function() {
                 return axios.put(this.apiCommentStore, 
                     {comment: this.comment, post_id: this.post_id}
