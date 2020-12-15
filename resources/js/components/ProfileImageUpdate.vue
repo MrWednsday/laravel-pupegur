@@ -14,7 +14,7 @@
                 <h2 style="color: black"> {{user.name}} </h2>
             </div>
             <div v-if="imageError.length > 3" class="p-2 bd-highlight">
-                <h2 style="color: black"> {{imageError}} </h2>
+                <p style="color: black"> {{imageError}} </p>
             </div>
         </div>
         <div v-if="showSave" class="d-flex justify-content-end">

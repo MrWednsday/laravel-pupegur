@@ -41,5 +41,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('post-update', function ($user, $post) {
             return $user->id === $post->user_id;
         });
+        Gate::define('profile-image-update', function ($user, $image) {
+            return $user->id === $image->imageable_id;
+        });
     }
 }

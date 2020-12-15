@@ -37,7 +37,7 @@ class UserDataController extends Controller
             $userData->save();
 
             return response('Update Success', 202)
-            ->header('Content-Type', 'text/plain');
+                ->header('Content-Type', 'text/plain');
 
         }else{
             return response('Access Denided', 401)

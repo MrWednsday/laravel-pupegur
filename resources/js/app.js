@@ -38,9 +38,6 @@ Vue.component('post-title', require('./components/PostTitle.vue').default);
 Vue.component('profile-image-update', require('./components/ProfileImageUpdate.vue').default);
 
 
-
-
-
 /**
  * Create global functions
  */

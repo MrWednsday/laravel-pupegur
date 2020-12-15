@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Tag;
 use App\Image;
+use App\Rules\PostImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
 
-use App\Rules\PostImage;
 
 
 class PostController extends Controller
@@ -140,7 +140,6 @@ class PostController extends Controller
             'url' => route('post.show', ['id' => $post->id]),
             'message' => 'Post Created',
         ]);
-
     }
 
     /**
