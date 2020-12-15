@@ -27,7 +27,7 @@
             return {
                 user: this.current_user,
                 userImage: this.current_user_image,
-                imageError: "2134"
+                imageError: ""
             }
         },
 
