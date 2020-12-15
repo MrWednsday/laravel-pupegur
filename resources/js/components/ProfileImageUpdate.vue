@@ -1,15 +1,29 @@
 <template>
     <div>
+        <div class="d-flex flex-row bd-highlight mb-3">
+            <div>
+                <img class="mx-auto d-block img-fluid img_profile" 
+                    :src="('http://pupegur.test/storage/images/' + userImage.path)"
+                    alt="user.image.path" 
+                >
+            </div>
+            <div>
+                <h2 style="color: black"> {{user.name}} </h2>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
         props: {
-
+            current_user: Object,
+            current_user_image: Object,
         },
         data:  function(){
             return {
+                user: this.current_user,
+                userImage: this.current_user_image,
                 imageError: ""
             }
         },

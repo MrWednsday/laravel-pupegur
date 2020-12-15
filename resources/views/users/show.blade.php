@@ -11,7 +11,8 @@
                 @if(Auth::user())
                     @if(Auth::user()->id === $user->id)
                         <profile-image-update
-                            
+                            :current_user="{{Auth::user()}}"
+                            :current_user_image="{{Auth::user()->image}}"
                         />
                     @else
                         <div class="d-flex flex-row bd-highlight mb-3">
