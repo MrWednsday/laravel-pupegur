@@ -2551,10 +2551,17 @@ __webpack_require__.r(__webpack_exports__);
     return {
       user: this.current_user,
       userImage: this.current_user_image,
-      imageError: "2134"
+      imageError: "",
+      srcPath: ''
     };
   },
+  mounted: function mounted() {
+    this.setUrl();
+  },
   methods: {
+    setUrl: function setUrl() {
+      this.srcPath = "/storage/images/" + this.userImage.path;
+    },
     updateProfile: function updateProfile() {
       var _this = this;
 
@@ -66834,12 +66841,9 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "d-flex flex-row bd-highlight mb-3" }, [
       _c("div", { staticClass: "p-2 bd-highlight" }, [
-        _c("img", {
+        _c("input", {
           staticClass: "mx-auto d-block img-fluid img_profile",
-          attrs: {
-            src: "http://pupegur.test/storage/images/" + _vm.userImage.path,
-            alt: "user.image.path"
-          }
+          attrs: { type: "image", src: _vm.srcPath, alt: "user.image.path" }
         })
       ]),
       _vm._v(" "),
