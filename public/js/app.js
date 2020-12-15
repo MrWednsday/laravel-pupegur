@@ -2539,6 +2539,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     current_user: Object,
@@ -2548,7 +2551,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       user: this.current_user,
       userImage: this.current_user_image,
-      imageError: ""
+      imageError: "2134"
     };
   },
   methods: {
@@ -66830,7 +66833,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "d-flex flex-row bd-highlight mb-3" }, [
-      _c("div", [
+      _c("div", { staticClass: "p-2 bd-highlight" }, [
         _c("img", {
           staticClass: "mx-auto d-block img-fluid img_profile",
           attrs: {
@@ -66840,11 +66843,19 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("div", [
+      _c("div", { staticClass: "p-2 bd-highlight" }, [
         _c("h2", { staticStyle: { color: "black" } }, [
           _vm._v(" " + _vm._s(_vm.user.name) + " ")
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _vm.imageError.length > 3
+        ? _c("div", { staticClass: "p-2 bd-highlight" }, [
+            _c("h2", { staticStyle: { color: "black" } }, [
+              _vm._v(" " + _vm._s(_vm.imageError) + " ")
+            ])
+          ])
+        : _vm._e()
     ])
   ])
 }

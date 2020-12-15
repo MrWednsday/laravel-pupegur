@@ -1,14 +1,17 @@
 <template>
     <div>
         <div class="d-flex flex-row bd-highlight mb-3">
-            <div>
+            <div class="p-2 bd-highlight">
                 <img class="mx-auto d-block img-fluid img_profile" 
                     :src="('http://pupegur.test/storage/images/' + userImage.path)"
                     alt="user.image.path" 
                 >
             </div>
-            <div>
+            <div class="p-2 bd-highlight">
                 <h2 style="color: black"> {{user.name}} </h2>
+            </div>
+            <div v-if="imageError.length > 3" class="p-2 bd-highlight">
+                <h2 style="color: black"> {{imageError}} </h2>
             </div>
         </div>
     </div>
@@ -24,7 +27,7 @@
             return {
                 user: this.current_user,
                 userImage: this.current_user_image,
-                imageError: ""
+                imageError: "2134"
             }
         },
 
