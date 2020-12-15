@@ -7,13 +7,21 @@
         <div class="raw">
             <div class="jumbotron col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h1> Welcome to Pupegur - User profile </h1>
-                
                 @if(Auth::user())
                     @if(Auth::user()->id === $user->id)
+                    <div>
                         <profile-image-update
                             :current_user="{{Auth::user()}}"
                             :current_user_image="{{Auth::user()->image}}"
                         />
+                    </div>
+                    <div>
+                        <user-data
+                            :user_data="{{ $user->userData }}"
+                            :email="{{json_encode($user->email)}}"
+                            :api_user_data_post={{ json_encode(route('api.userData.update')) }}
+                        />
+                    </div>
                     @else
                         <div class="d-flex flex-row bd-highlight mb-3">
                             <div>
@@ -22,6 +30,12 @@
                             <div>
                                 <h2 style="color: black"> {{$user->name}} </h2>
                             </div>
+                        </div>
+                        <div>
+                            @if($user->userData->show_email)
+                                <p>User email: {{$user->email}}</p>
+                            @endif
+                                <p>Gender: {{$user->userData->gender}}</p>
                         </div>
                     @endif
                 @else
@@ -33,25 +47,12 @@
                             <h2 style="color: black"> {{$user->name}} </h2>
                         </div>
                     </div>
-                @endif
-                @if(Auth::user())
-                    @if(Auth::user()->id === $user->id)
-                        <user-data
-                            :user_data="{{ $user->userData }}"
-                            :email="{{json_encode($user->email)}}"
-                            :api_user_data_post={{ json_encode(route('api.userData.update')) }}
-                        />
-                    @else
+                    <div>
                         @if($user->userData->show_email)
                             <p>User email: {{$user->email}}</p>
                         @endif
-                            <p>Gender: {{$user->userData->gender}}</p>
-                    @endif
-                @else
-                    @if($user->userData->show_email)
-                        <p>User email: {{$user->email}}</p>
-                    @endif
-                    <p>Gender: {{$user->userData->gender}}</p>
+                        <p>Gender: {{$user->userData->gender}}</p>
+                    </div>
                 @endif
             </div>
             @if (count($user->posts) === 0)
