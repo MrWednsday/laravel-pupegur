@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\User;
 use App\Post;
+use App\DailyDogPicture;
+
+app()->singleton('DailyDogPicture', function ($app){
+    return new DailyDogPicture('https://api.thedogapi.com/v1/images/search', '21cb0715-fbab-4a0f-b799-84a787e02603');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +42,10 @@ Route::get('u/{id}', 'UserController@show')
 Route::post('comments', 'CommentController@store')
     ->name('comment.post');
 
+Route::get('dailyDog', function () {
+    $dailyDogPicture = app()->make('DailyDogPicture');
+    return $dailyDogPicture->getDailyDogPicture();
+});
 
 Auth::routes();
 

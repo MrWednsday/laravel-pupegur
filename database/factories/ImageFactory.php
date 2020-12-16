@@ -21,7 +21,7 @@ $factory->define(Image::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(Image::class, 'profile_image', function (\Faker\Generator $faker) {
+$factory->state(Image::class, 'profile_image', function (Faker $faker) {
     return [
         'path' => 'profile/default_profile.png',
     ];

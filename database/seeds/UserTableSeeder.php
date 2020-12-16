@@ -24,7 +24,8 @@ class UserTableSeeder extends Seeder
         ]);
 
         $user->userData()->save(factory(App\UserData::class)->make());
-        $user->userRole()->save(factory(App\UserRole::class)->make());
+        $user->userRole()->save(factory(App\UserRole::class)->state('bot')->make());
+        $user->image()->save(factory(App\Image::class)->state('profile_image')->make());
         $user->save();
 
         factory(App\User::class, 15)->create()->each(function ($user) {

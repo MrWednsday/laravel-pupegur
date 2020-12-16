@@ -11,3 +11,17 @@ $factory->define(UserRole::class, function (Faker $faker) {
         'admin' => false
     ];
 });
+
+$factory->state(UserRole::class, 'admin', function (Faker $faker) {
+    return [
+        'admin' => true
+    ];
+});
+
+$factory->state(UserRole::class, 'bot', function (Faker $faker) {
+    return [
+        'user' => false,
+        'admin' => false
+    ];
+});
+  
