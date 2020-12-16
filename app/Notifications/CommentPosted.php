@@ -46,9 +46,9 @@ class CommentPosted extends Notification
 
         return (new MailMessage)
             ->from('pup@pupegur.com', 'A good boy')
-            ->subject($name . 'loved your post enought to leave you a message!')
+            ->subject($name . ' loved your post enought to leave you a message!')
             ->greeting('Hello Pupegur!')
-            ->line('Someone commented on your posted.')
+            ->line($name . ' commented on your posted.')
             ->action('View Post', $url)
             ->line('Thank you for posting a comment!');
     }
