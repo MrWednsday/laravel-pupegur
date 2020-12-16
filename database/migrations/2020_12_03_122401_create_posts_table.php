@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             
             $table->timestamps();
 
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->default(0);
             $table->boolean('daily_dog_post')->default(0);
 
             $table->foreign('user_id')->references('id')->on('users')

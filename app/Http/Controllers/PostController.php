@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
-
-
-
 class PostController extends Controller
 {
 

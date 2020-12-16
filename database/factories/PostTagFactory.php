@@ -14,6 +14,6 @@ $factory->define(PostTag::class, function (Faker $faker) {
 
     return [
         'post_id' => $faker->numberBetween(1, $noOfPost),
-        'tag_id' => $faker->numberBetween(1, $noOfTag),
+        'tag_id' => $faker->numberBetween(2, $noOfTag),
     ];
 });

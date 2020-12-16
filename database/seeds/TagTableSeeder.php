@@ -11,7 +11,12 @@ class TagTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+
+        Tag::create([
+            'tag' => 'Daily Pup',
+        ]);
+
         factory(Tag::class, 100)->create();
     }
 }
