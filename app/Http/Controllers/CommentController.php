@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\CommentPosted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -43,15 +44,15 @@ class CommentController extends Controller
 
         $comment->save();
 
-        if ($comment->wasRecentlyCreated === true) {
+        $comment->post->user->notify(new CommentPosted($comment));
+
+        if ($comment->exists() === true) {
             return response('Created Correctly', 200)
-                  ->header('Content-Type', 'text/plain');
+                ->header('Content-Type', 'text/plain');
         } else {
             return response('Created Incorrectly', 500)
-                  ->header('Content-Type', 'text/plain');
+                ->header('Content-Type', 'text/plain');
         }
-
-        return response()->json();
     }
 
     /**

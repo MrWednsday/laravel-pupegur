@@ -66882,7 +66882,7 @@ var render = function() {
       _vm._v(" "),
       _vm.imageError.length > 3
         ? _c("div", { staticClass: "p-2 bd-highlight" }, [
-            _c("h2", { staticStyle: { color: "black" } }, [
+            _c("p", { staticStyle: { color: "black" } }, [
               _vm._v(" " + _vm._s(_vm.imageError) + " ")
             ])
           ])

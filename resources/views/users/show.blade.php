@@ -26,7 +26,7 @@
                     @else
                         <div class="d-flex flex-row bd-highlight mb-3">
                             <div>
-                                <img class="mx-auto d-block img-fluid img_profile" src="{{ asset('storage/images/' . $user->image->path) }}" alt={{$user->image->path}} :id="profileImage">
+                                <img class="mx-auto d-block img-fluid img_profile" src="{{ asset('storage/images/' . $user->image->path) }}" alt={{$user->image->path}}>
                             </div>
                             <div>
                                 <h2 style="color: black"> {{$user->name}} </h2>
@@ -73,7 +73,7 @@
                         <h2 class="m-0"> {{$post->title}} </h2>
                         <div>
                             <a href="{{ route('post.show', $post->id) }}">
-                                <img class="mx-auto d-block img-fluid" src="{{ asset('storage/images/' . $post->path) }}" alt={{$post->path}}>
+                                <img class="mx-auto d-block img-fluid" src="{{ asset('storage/images/' . $post->image->path) }}" alt={{$post->image->path}}>
                             </a>
                             <div class="d-flex bd-highlight mb-3">
                                 <div class="ml-auto p-2 bd-highlight">

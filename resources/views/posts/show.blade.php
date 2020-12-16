@@ -47,7 +47,7 @@
                 />
             </div>
         </div>
-        <div id="app">
+        <div>
             <comments 
                 :post_id="{{ $post->id }}" 
                 :auth_user="{{ Auth::user() ? Auth::user() : 'null' }}"
