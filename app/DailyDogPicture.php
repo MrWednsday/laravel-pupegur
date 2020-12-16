@@ -4,14 +4,17 @@ namespace App;
 
 use App\User;
 use App\Post;
+use App\Image;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Storage;
 
 class DailyDogPicture
 {
     private $apiUrl;
     private $apiKey;
+    private $STORAGE_IMAGE_PATH = 'public/images/';
 
     public function __construct($url, $key) {
         $this->apiUrl = $url;
@@ -38,7 +41,25 @@ class DailyDogPicture
     }
 
     private function downloadImage($url){
-        dd(file_get_contents($url));
+        $imageFile = file_get_contents($url);
+        $fileName = $this->createName($url);
+
+        Storage::put($this->STORAGE_IMAGE_PATH . $fileName, $imageFile);
+    }
+
+    private function createName($url){
+        
+        $fileExtension = $this->getFileExtension($url);
+
+        $safeName = Str::random(15).'.'.$fileExtension;
+        while(Image::where('path', '=', $safeName)->exists()){
+            $safeName = Str::random(15).'.'.$fileExtension;
+        }
+        return $safeName;
+    }
+    private function getFileExtension($url){
+        $splitString = explode('.', $url);
+        return end($splitString);
     }
     private function callApi(){
          return Http::get($this->apiUrl, [
