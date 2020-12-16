@@ -15,7 +15,7 @@ $factory->define(Post::class, function (Faker $faker) {
         $noOfUsers = count(User::get());
 
         return [
-            'user_id' => $faker->numberBetween($min = 1, $max = $noOfUsers),
+            'user_id' => $faker->numberBetween($min = 2, $max = $noOfUsers),
             'title' => $faker->realText($maxNbChars = 128), 
             'created_at' => now(),
             'updated_at' => null,
