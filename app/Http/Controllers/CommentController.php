@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Event\CommentReceived;
 use App\Notifications\CommentPosted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 use App\Comment;
-use App\Events\CommentReceived;
+
 
 class CommentController extends Controller
 {
