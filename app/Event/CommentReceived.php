@@ -32,6 +32,6 @@ class CommentReceived
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('post'.$this->$comment->post->id);
+        return new PrivateChannel('user'.$this->$comment->post->user->id);
     }
 }
