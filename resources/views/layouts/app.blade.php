@@ -51,6 +51,11 @@
                                 </li>
                             @endif
                         @else
+                            <div>
+                                <notifications
+                                    :current_user="{{Auth::user()}}"
+                                />
+                            </div>
                             <a class="m-0" href="{{ route('user.show', Auth::user()->id) }}">
                                 <img class="mx-auto d-block img-fluid img_profile" src="{{ asset('storage/images/' . Auth::user()->image->path) }}" alt={{Auth::user()->image->path}}>
                             </a>
