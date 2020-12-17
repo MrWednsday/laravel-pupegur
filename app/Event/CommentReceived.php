@@ -44,4 +44,19 @@ class CommentReceived
     {
         return 'comment.received';
     }
+
+    /**
+     * Get the data to broadcast.
+     *
+     * @return array
+     */
+    public function broadcastWith()
+    {
+        return [
+            'comment_user_name' => $this->comment->user->name,
+            'comment_user_id' => $this->comment->user->id,
+            'comment_start' => $this->comment->text,
+            'post_id' => $this->comment->post->id
+        ];
+    }
 }
