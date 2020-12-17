@@ -36,6 +36,7 @@ Vue.component('user-data', require('./components/UserData.vue').default);
 Vue.component('add-tags', require('./components/AddTags.vue').default);
 Vue.component('post-title', require('./components/PostTitle.vue').default);
 Vue.component('profile-image-update', require('./components/ProfileImageUpdate.vue').default);
+Vue.component('notifications', require('./components/Notifications.vue').default);
 
 
 /**
