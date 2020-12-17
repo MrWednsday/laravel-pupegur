@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 use App\Comment;
+use App\Events\CommentReceived;
 
 class CommentController extends Controller
 {
@@ -45,6 +46,7 @@ class CommentController extends Controller
         $comment->save();
 
         $comment->post->user->notify(new CommentPosted($comment));
+        event(new CommentReceived($comment));
 
         if ($comment->exists() === true) {
             return response('Created Correctly', 200)
