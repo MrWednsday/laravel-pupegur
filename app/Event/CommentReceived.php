@@ -34,4 +34,14 @@ class CommentReceived
     {
         return new PrivateChannel('user'.$this->$comment->post->user->id);
     }
+
+    /**
+     * The event's broadcast name.
+     *
+     * @return string
+     */
+    public function broadcastAs()
+    {
+        return 'comment.received';
+    }
 }
