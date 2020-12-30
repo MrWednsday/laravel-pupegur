@@ -20,7 +20,7 @@
                     </div>
                     <div v-if="edditing">
                         <button class="p-2 bd-highlight btn btn-primary btn-large mx-2" 
-                            v-on:click="saveEdit()">Save Comment</button>
+                            v-on:click="saveEdit()">Save New Title</button>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
         <div class="jumbotron col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-0">
             <div class="d-flex bd-highlight">
                 <div class="p-2 flex-grow-1 bd-highlight">
-                    <a class="m-0" href="/">
+                    <a class="m-0" :href="comentUserUrl">
                         <p>{{commentUser}}</p>
                     </a>
                 </div>
@@ -70,6 +70,7 @@
                 commentId: this.data.comment_data.id,
                 commentUserId: this.data.comment_data.user.id,
                 enableEdditing: false,
+                comentUserUrl: '/u/' + this.data.comment_data.user.id,
                 commentError: '',
                 textPlaceholder : '',
             }

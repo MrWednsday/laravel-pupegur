@@ -52,7 +52,9 @@ class CommentReceived implements ShouldBroadcast
             'comment_user_name' => $this->comment->user->name,
             'comment_user_id' => $this->comment->user->id,
             'comment_start' => $this->comment->text,
-            'post_id' => $this->comment->post->id
+            'post_id' => $this->comment->post->id,
+            'post_title' => $this->comment->post->title,
+            'time' => date("h:i:sa")
         ];
     }
 }

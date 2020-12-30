@@ -58,16 +58,17 @@
                 this.tags = tags
             },
             uploadImage: function() {
+                    this.postNameError = false;
+                    this.postFileError = false;
                     axios.put(this.apiPostCreate, {
                         post_title: this.postName,
                         image_data: this.image,
                         tags: this.tags
-                    })
-                    .then((response) => {
+                    }).then((response) => {
                         window.location.href = response.data.url;
                     }).catch((error) => {
-                        this.postNameError = (typeof error.response.data.errors.post_title[0] !== 'undefined') ? 'Post needs a title' : false;
-                        this.postFileError = (typeof error.response.data.errors.image_data[0] !== 'undefined') ? 'File type not supported' : false;
+                        this.postNameError = (typeof error.response.data.errors.post_title === 'undefined') ? false : error.response.data.errors.post_title[0];
+                        this.postFileError = (typeof error.response.data.errors.image_data === 'undefined') ? false : error.response.data.errors.image_data[0];
                     }
                 )
             }

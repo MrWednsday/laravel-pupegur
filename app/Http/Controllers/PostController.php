@@ -128,6 +128,11 @@ class PostController extends Controller
                 $tag = Tag::create([
                     'tag' => $tagText
                 ]);
+            }else{
+                $tag = Tag::where('tag', '=', $tagText)->get()->first();
+            }
+
+            if($post->tags()->find($tag->id) === null){
                 $post->tags()->attach($tag);
             }
         }

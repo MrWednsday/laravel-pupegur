@@ -2051,6 +2051,7 @@ __webpack_require__.r(__webpack_exports__);
       commentId: this.data.comment_data.id,
       commentUserId: this.data.comment_data.user.id,
       enableEdditing: false,
+      comentUserUrl: '/u/' + this.data.comment_data.user.id,
       commentError: '',
       textPlaceholder: ''
     };
@@ -2416,6 +2417,8 @@ __webpack_require__.r(__webpack_exports__);
     uploadImage: function uploadImage() {
       var _this = this;
 
+      this.postNameError = false;
+      this.postFileError = false;
       axios.put(this.apiPostCreate, {
         post_title: this.postName,
         image_data: this.image,
@@ -2423,8 +2426,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         window.location.href = response.data.url;
       })["catch"](function (error) {
-        _this.postNameError = typeof error.response.data.errors.post_title[0] !== 'undefined' ? 'Post needs a title' : false;
-        _this.postFileError = typeof error.response.data.errors.image_data[0] !== 'undefined' ? 'File type not supported' : false;
+        _this.postNameError = typeof error.response.data.errors.post_title === 'undefined' ? false : error.response.data.errors.post_title[0];
+        _this.postFileError = typeof error.response.data.errors.image_data === 'undefined' ? false : error.response.data.errors.image_data[0];
       });
     }
   }
@@ -2441,6 +2444,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -66277,9 +66298,11 @@ var render = function() {
         [
           _c("div", { staticClass: "d-flex bd-highlight" }, [
             _c("div", { staticClass: "p-2 flex-grow-1 bd-highlight" }, [
-              _c("a", { staticClass: "m-0", attrs: { href: "/" } }, [
-                _c("p", [_vm._v(_vm._s(_vm.commentUser))])
-              ])
+              _c(
+                "a",
+                { staticClass: "m-0", attrs: { href: _vm.comentUserUrl } },
+                [_c("p", [_vm._v(_vm._s(_vm.commentUser))])]
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "p-2 bd-highlight" }, [
@@ -66846,7 +66869,9 @@ var render = function() {
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "50",
                   height: "50",
-                  viewBox: "0 0 16 16"
+                  viewBox: "0 0 16 16",
+                  "data-toggle": "modal",
+                  "data-target": "#exampleModal"
                 }
               },
               [
@@ -66916,11 +66941,45 @@ var render = function() {
                 { staticClass: "modal-body" },
                 _vm._l(_vm.events, function(event) {
                   return _c("div", { key: event.id }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(event) +
-                        "\n                    "
-                    )
+                    _c("p", [_vm._v("Someone comented on one of your posts")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _c(
+                          "a",
+                          { attrs: { href: /u/ + event.comment_user_id } },
+                          [
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(event.comment_user_name) +
+                                "\n                                "
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-3 offset-md-1" }, [
+                        _vm._v(_vm._s(event.time))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-9 offset-md-3" }, [
+                        _c("a", { attrs: { href: /p/ + event.post_id } }, [
+                          _vm._v(
+                            "\n                                    " +
+                              _vm._s(event.post_title) +
+                              "\n                                "
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-9 offset-md-3" }, [
+                        _vm._v(_vm._s(event.comment_start))
+                      ])
+                    ])
                   ])
                 }),
                 0
@@ -67055,7 +67114,7 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Save Comment")]
+                              [_vm._v("Save New Title")]
                             )
                           ])
                         : _vm._e()
