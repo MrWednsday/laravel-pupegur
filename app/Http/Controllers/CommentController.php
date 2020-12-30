@@ -44,8 +44,6 @@ class CommentController extends Controller
             'text' => $request->comment,
         ]);
 
-        $comment->save();
-
         $comment->post->user->notify(new CommentPosted($comment));
         event(new CommentReceived($comment));
 
