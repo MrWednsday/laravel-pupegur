@@ -6,7 +6,7 @@ use App\Post;
 use App\DailyDogPicture;
 
 app()->singleton('DailyDogPicture', function ($app){
-    return new DailyDogPicture(env('https://api.thedogapi.com/v1/images/search'), env('API_TOKEN'));
+    return new DailyDogPicture(env('API_URL'), env('API_TOKEN'));
 });
 
 /*
