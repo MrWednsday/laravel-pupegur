@@ -3,7 +3,7 @@
             <div v-if="authUser !== null">
                 <div v-if="authUser.id === postUserId || adminRole">
                     <div class="d-flex flex-row-reverse bd-highlight mb-3">
-                        <button class="p-2 bd-highlight btn btn-secondary btn-large mx-2" v-on:click="deleteComment()">Delete Post</button>
+                        <button class="p-2 bd-highlight btn btn-secondary btn-large mx-2" v-on:click="deletePost()">Delete Post</button>
                         <label class="p-2 bd-highlight" v-if="deleteError">Error Occured</label>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
         },
 
         methods: {
-            deleteComment: function() {
+            deletePost: function() {
                 axios.delete(this.apiPostDelete
                     ).then((response) => {
                         window.location.href = response.data.url;
